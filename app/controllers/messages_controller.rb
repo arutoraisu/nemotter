@@ -5,7 +5,8 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.where(team_id: params[:team_id])
+    #@messages = Message.where(team_id: params[:team_id])
+    @messages = @team.messages
   end
 
   # GET /messages/1
@@ -73,7 +74,7 @@ class MessagesController < ApplicationController
     end
 
     def set_team
-      team_id = params[:team_id] || params[:message][:team_id] rescue 1
+      team_id = params[:team_id] || params[:message][:team_id] rescue team_id = 1
       @team = Team.find(team_id)
     end
 
