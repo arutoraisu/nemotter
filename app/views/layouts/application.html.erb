@@ -14,16 +14,13 @@
 <body>
 
   <div class="container">
-    <div class="logout">
-      アカウント名（仮) | ログアウト
-    </div>
 
     <div class="page-header">
       <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/teams/1/messages';" />
 
       <p class="navbar-text pull-right">
         <% if user_signed_in? %>
-        Logged in as <strong><u><%= current_user.email %></u></strong>.
+        こんにちは、<strong><u><%= current_user.email %></u></strong>.
         <%= link_to 'アカウント編集', edit_user_registration_path, :class => 'navbar-link' %> |
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% else %>
@@ -40,9 +37,9 @@
              <li role="presentation"><a href="#">Profile</a></li>
              <li role="presentation"><a href="#">Messages</a></li -->
              <% if user_signed_in? %>
-             <% Team.all.each do |teams| %>
-                 <li role="presentation"><a href="#"><%= teams.name %>&nbsp; &nbsp; &nbsp; </a></li>
-             <% end %>
+                <% Team.all.each do |team| %>
+                  <li role="presentation" class="active"><a href="/teams/<%=team.id%>/messages"><%= team.name %> </a></li>
+                 <% end %>
              <% end %>
         　</ul>
 
@@ -52,9 +49,9 @@
         </div>
       </div>
 
-      <div id="footer "><br></div>
-
     </div>
+
+    <h4 id="footer "><br></h4>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>
