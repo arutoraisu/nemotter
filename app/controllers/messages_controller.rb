@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       team_id = @message.team_id
       if @message.save
-        format.html { redirect_to team_messages_url(team_id: team_id), notice: 'Message was successfully created.' }
+        format.html { redirect_to team_messages_url(team_id: team_id), notice: '投稿が完了しました。' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to @message, notice: '投稿が更新されました。' }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class MessagesController < ApplicationController
     team_id = @message.team_id
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to team_messages_url(team_id: team_id), notice: 'Message was successfully destroyed.' }
+      format.html { redirect_to team_messages_url(team_id: team_id), notice: '投稿は削除されました。' }
       format.json { head :no_content }
     end
   end
