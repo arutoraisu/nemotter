@@ -1,6 +1,6 @@
 class TeamUsersController < ApplicationController
   before_action :set_team_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_team, only: [:index,:edit, :new, :show]
   # GET /team_users
   # GET /team_users.json
   def index
@@ -54,9 +54,10 @@ class TeamUsersController < ApplicationController
   # DELETE /team_users/1
   # DELETE /team_users/1.json
   def destroy
+    team_id = @team_user.team_id
     @team_user.destroy
     respond_to do |format|
-      format.html { redirect_to team_users_url, notice: 'Team user was successfully destroyed.' }
+      format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'Team user was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +68,10 @@ class TeamUsersController < ApplicationController
       @team_user = TeamUser.find(params[:id])
     end
 
+    def set_team
+      team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
+      @team = Team.find(team_id)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_user_params
       params.require(:team_user).permit(:team_id, :user_id, :admin)
