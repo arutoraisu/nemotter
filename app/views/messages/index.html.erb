@@ -21,14 +21,20 @@
     </div> --> <!-- /input-group -->
   <!--</div>--><!-- /.col-lg-6 -->
 </div>
-<div class="create_form"> <!--メッセージ作成フォーム-->
+<div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
 <div class="actions"><a href="messages/new"class="btn btn-primary btn-lg active" role="button">
 メッセージ作成
-</a></div></div>
+</a></div>
+<div class="actions"><a href=""class="btn btn-success btn-lg active" role="button">
+  管理
+</a></div>
+</div>
 <div class="date_form"><!--日時入力フォーム-->
 <!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
 </div>-->
 </div>
+</div>
+
 <%= paginate(@messages) %>
   <% @messages.each do |message| %>
   <div class="article">
