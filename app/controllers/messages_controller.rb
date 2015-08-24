@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    #@messages = Message.where(team_id: params[:team_id])
-    #@messages = @team.messages
-    @messages = @team.messages.page(params[:page]).per(25).order("id DESC")
+    @alls = @team.messages.where(tag: params[:tag])
+    @messages = @team.messages.page(params[:page])
+    #@messages = @team.messages.page(params[:page]).per(25).order("id DESC")
   end
 
   # GET /messages/1
@@ -75,12 +75,21 @@ class MessagesController < ApplicationController
     end
 
     def set_team
-      team_id = params[:team_id] || params[:message][:team_id] rescue team_id = 1
-      @team = Team.find(team_id)
+      team_id = params[:team_id] || params[:message][:team_id] rescue nil
+      @team = Team.find(team_id) rescue  @team = Team.first
+      @team
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:body, :tag, :user_id, :team_id)
     end
+
+=begin
+    def index
+      #ViewのFormで取得したパラメータをモデルに渡す
+      @projects = Project.search(params[:search])
+    end
+=end
+
 end

@@ -1,29 +1,22 @@
-<!DOCTYPE html>
 
-<head>
-</head>
-
-
-<body>
 <p id="notice"><%= notice %></p>
-
-
 
 <div class="pagetop_form">
   <div class="tag_form"><!--タグ検索フォーム-->
-<!--
-<div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="タグ検索">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div> --> <!-- /input-group -->
-  <!--</div>--><!-- /.col-lg-6 -->
-</div>
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="タグ検索" @alls>
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button">　検索 </button>
+        </span>
+      </div> <!-- /input-group -->
+      <!--</div>--><!-- /.col-lg-6 -->
+    </div>
+  </div>
+
 <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
 <div class="actions"><a href="messages/new"class="btn btn-primary btn-lg active" role="button">
-メッセージ作成
+  メッセージ作成
 </a></div>
 <div class="actions"><a href=""class="btn btn-success btn-lg active" role="button">
   管理
@@ -36,20 +29,23 @@
 </div>
 
 <%= paginate(@messages) %>
+
   <% @messages.each do |message| %>
   <div class="article">
   <div class="detail">
-    タグ:<td><%= message.tag %></td>
+    タグ:<%= message.tag %>
   </div>
   <div class="comment"><p>
     <%= message.body %>
   </p></div>
   <div class="posted_date">
-    date:
+    date:<%= message.created_at %>
   </div>
   </div>
   <!--<%= link_to 'Edit', edit_message_path(message) %> -->
 <% end %>
+
+
 
 <!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
 
@@ -59,8 +55,7 @@
 </a></div>
 </div>
 
-</body>
-<!--
+<% if false %>
 <table>
   <thead>
     <tr>
@@ -71,7 +66,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @messages.each do |message| %>
       <tr>
@@ -86,4 +80,4 @@
     <% end %>
   </tbody>
 </table>
--->
+<% end %>
