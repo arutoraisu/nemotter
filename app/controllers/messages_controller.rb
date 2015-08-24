@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   def index
     #@messages = Message.where(team_id: params[:team_id])
     #@messages = @team.messages
-    @messages = @team.messages.page(params[:page]).per(50).order("id DESC")
+    @messages = @team.messages.page(params[:page]).per(25).order("id DESC")
   end
 
   # GET /messages/1

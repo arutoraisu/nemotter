@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :team_users
+
   devise_for :users
 
   resources :teams do
-    resources :messages, shallow: true
+    resources :messages, shallow: true 
+      resources :team_users, shallow: true
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
