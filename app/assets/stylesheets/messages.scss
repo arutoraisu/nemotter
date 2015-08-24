@@ -29,6 +29,7 @@
 
 .comment p{
   margin: 0;
+  word-wrap: break-word;
 }
 
 .posted_date{
@@ -54,6 +55,10 @@
 .date_form{
   position:relative;
   margin:2%;
+}
+
+.page_form{
+  margin: 0 10%;
 }
 
 .top_button{
