@@ -196,3 +196,5 @@ ja:
   attributes:
     current_password: "現在のパスワード"
     email: "メールアドレス"
+    password_confirmation: "確認用パスワード"
+    password: "パスワード"
