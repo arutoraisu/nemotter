@@ -25,6 +25,7 @@ class TeamUsersController < ApplicationController
   # POST /team_users.json
   def create
     @team_user = TeamUser.new(team_user_params)
+    @team_user.user_id = current_user.id
 
     respond_to do |format|
       if @team_user.save

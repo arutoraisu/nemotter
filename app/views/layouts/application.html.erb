@@ -32,18 +32,13 @@
       <div class="row">
         <div class="col-md-3">
           <ul class="nav nav-pills nav-stacked">
-            <!-- li role="presentation" class="active"><a href="#">Home</a></li>
-             <li role="presentation"><a href="#">Profile</a></li>
-             <li role="presentation"><a href="#">Messages</a></li -->
              <% if user_signed_in? %>
                 <% Team.all.each do |team| %>
-
-                  <% class_name = (current_page?("/teams/#{team.id}/messages")|| current_page?("/teams/#{team.id}/messages/new"))? 'active' : '' %>
+                  <% class_name = @team.id==team.id ? 'active' : '' %>
                   <li role="presentation" class="<%= class_name %>">
                       <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
                   </li>
                  <% end %>
-
                  <br>
                  <!-- Indicates caution should be taken with this action -->
                  <div class="team_button_center">

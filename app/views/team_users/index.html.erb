@@ -1,31 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Team Users</h1>
+<h1><%= @team.name %> の管理</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Team</th>
-      <th>User</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @team_users.each do |team_user| %>
+  備考<br>
+  <div class="remark">
+    <%= @team.remark %>
+  </div>
+
+
+  <table class="table table-bordered">
+    <tbody>
       <tr>
-        <td><%= team_user.team_id %></td>
-        <td><%= team_user.user_id %></td>
-        <td><%= team_user.admin %></td>
-        <td><%= link_to 'Show', team_user %></td>
-        <td><%= link_to 'Edit', edit_team_user_path(team_user) %></td>
-        <td><%= link_to 'Destroy', team_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <th>アカウントの種類</th>
+      <th>メールアドレス</th>
+      <th>処理</th>
+    </tr>
+      <tr>
+      <% @team_users.each do |team_user| %>
+      <% if @team.id==team_user.team_id %>
+      <div class="member">
+        <%if team_user.admin==1%>
+          <td>管理者ユーザー</td>
+        <%else%>
+          <td>一般ユーザー</td>
+        <% end %>
+          <td><%= team_user.user_id %></td>
+        <td><%= link_to 'Destroy', team_user, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Edit', edit_team_user_path(team_user) %></td>
+      </td>
 
-<br>
+      </div>
+      <% end %>
+      <tr>
+      <% end %>
+  </table>
 
 <%= link_to 'New Team user', new_team_team_user_path(team_id: @team.id) %>
