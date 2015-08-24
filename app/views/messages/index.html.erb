@@ -29,8 +29,8 @@
 <!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
 </div>-->
 </div>
-
-  <% @messages.reverse_each do |message| %>
+<%= paginate(@messages) %>
+  <% @messages.each do |message| %>
   <div class="article">
   <div class="detail">
     タグ:<td><%= message.tag %></td>
@@ -48,7 +48,7 @@
 <!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
 
 <div class="top_button">
-<div class="actions"><a href="messages"class="btn btn-primary btn-lg active" role="button">
+<div class="actions"><a href=""class="btn btn-primary btn-lg active" role="button">
 上へ
 </a></div>
 </div>
