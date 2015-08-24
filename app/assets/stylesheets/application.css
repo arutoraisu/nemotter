@@ -32,3 +32,10 @@
 .timeline{
   padding-bottom: 100px;
 }
+.team_button{
+  width: 100%;
+  padding:5%;
+}
+.team_button_center{
+  margin: 0% 30%; 
+}
