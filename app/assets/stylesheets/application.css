@@ -32,15 +32,6 @@
 .timeline{
   padding-bottom: 100px;
 }
-#footer {
-  bottom: 0;
-  height: 5em;
-  background-color: #00aced;
-  color: #000;
-  width: 100%;
-  height: 20px;
-  line-height: 60px;
-}
 .divider-vertical {
 height: 50px;
 margin: 0 9px;
