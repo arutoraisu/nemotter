@@ -83,4 +83,9 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:body, :tag, :user_id, :team_id)
     end
+
+    def index
+      #ViewのFormで取得したパラメータをモデルに渡す
+      @projects = Project.search(params[:search])
+    end
 end

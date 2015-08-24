@@ -7,52 +7,59 @@
 <body>
 <p id="notice"><%= notice %></p>
 
-
+<%= form_tag messages_path, :method => 'get' do %>  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
 <div class="pagetop_form">
   <div class="tag_form"><!--タグ検索フォーム-->
-<!--
-<div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="タグ検索">
-      <span class="input-group-btn">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="タグ検索">
+        <span class="input-group-btn">
         <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div> --> <!-- /input-group -->
+        </span>
+      </div> <!-- /input-group -->
   <!--</div>--><!-- /.col-lg-6 -->
-</div>
-<div class="create_form"> <!--メッセージ作成フォーム-->
-<div class="actions"><a href="messages/new"class="btn btn-primary btn-lg active" role="button">
-メッセージ作成
-</a></div></div>
-<div class="date_form"><!--日時入力フォーム-->
-<!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
-</div>-->
-</div>
-<%= paginate(@messages) %>
-  <% @messages.each do |message| %>
-  <div class="article">
-  <div class="detail">
-    タグ:<td><%= message.tag %></td>
+    </div>
   </div>
-  <div class="comment"><p>
-    <%= message.body %>
-  </p></div>
-  <div class="posted_date">
-    date:
+
+  <div class="create_form"> <!--メッセージ作成フォーム-->
+    <div class="actions"><a href="messages/new"class="btn btn-primary btn-lg active" role="button">
+      メッセージ作成
+    </a></div></div>
+
+    <div class="date_form"><!--日時入力フォーム-->
+      <!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
+      </div>-->
+    </div>
+
+    <%= paginate(@messages) %>
+    <% @messages.each do |message| %>
+    <div class="article">
+      <div class="detail">
+        タグ : <%= message.tag %>
+      </div>
+      <div class="comment"><p>
+        <%= message.body %>
+      </p></div>
+      <div class="posted_date">
+        date:
+      </div>
+    </div>
+    <!--<%= link_to 'Edit', edit_message_path(message) %> -->
+    <% end %>
+
+    <!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
+
+    <div class="top_button">
+      <div class="actions"><a href=""class="btn btn-primary btn-lg active" role="button">
+        上へ
+      </a></div>
+    </div>
   </div>
-  </div>
-  <!--<%= link_to 'Edit', edit_message_path(message) %> -->
-<% end %>
-
-<!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
-
-<div class="top_button">
-<div class="actions"><a href=""class="btn btn-primary btn-lg active" role="button">
-上へ
-</a></div>
-</div>
-
 </body>
 <!--
 <table>
