@@ -25,13 +25,10 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
 
-    @team_user = TeamUser.new(team_user_params)
-    @team_user.user_id=current_user.id
-    @team_user.team_id=@team.id
-    @team_user.admin=1
-
     @team = Team.new(team_params)
-    TeamUser.where("user_id = ?", current_user.id).first.id=1
+    @team_user = @team.team_users.build
+    @team_user.user_id=current_user.id
+    @team_user.admin=1
 
     respond_to do |format|
       if @team.save
