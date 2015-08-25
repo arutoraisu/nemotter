@@ -2,23 +2,28 @@
 <p id="notice"><%= notice %></p>
 
 <div class="pagetop_form">
+
+
+
   <div class="tag_form"><!--タグ検索フォーム-->
     <div class="col-lg-6">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="タグ検索" @alls>
-        <span class="input-group-btn">
-        <button class="btn btn-default" type="button">　検索 </button>
-        </span>
+        <%= form_tag team_messages_path, :method => 'get' do %>
+          <p>
+            <%= text_field_tag :search, params[:search], :placeholder => "タグ検索" %>
+            <%= submit_tag "検索", :name => 'submit' %>
+          </p>
+        <% end %>
       </div> <!-- /input-group -->
       <!--</div>--><!-- /.col-lg-6 -->
     </div>
   </div>
 
 <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
-<div class="actions"><a href="messages/new"class="btn btn-primary btn-lg active" role="button">
+<div class="actions"><a href="messages/new" class="btn btn-primary btn-lg active" role="button">
   メッセージ作成
 </a></div>
-<div class="actions"><a href=""class="btn btn-success btn-lg active" role="button">
+<div class="actions"><a href="" class="btn btn-success btn-lg active" role="button">
   管理
 </a></div>
 </div>
