@@ -5,8 +5,10 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @alls = @team.messages.where(tag: params[:tag])
-    @messages = @team.messages.page(params[:page])
+    #@alls = @team.messages.where(tag: params[:search])
+    @alls = @team.messages.where("tag like '%#{params[:search]}%'")
+    @messages = @alls.page(params[:page])
+    #@messages = Message.search(params[:search])
     #@messages = @team.messages.page(params[:page]).per(25).order("id DESC")
   end
 
