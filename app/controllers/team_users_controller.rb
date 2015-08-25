@@ -4,7 +4,9 @@ class TeamUsersController < ApplicationController
   # GET /team_users
   # GET /team_users.json
   def index
-    @team_users = TeamUser.all
+    #@team_users = TeamUser.all
+    @team_users = @team.team_users
+    @admin = @team_users.where(user_id: current_user.id, admin: 1).present?
   end
 
   # GET /team_users/1

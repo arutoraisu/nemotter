@@ -80,7 +80,6 @@ class MessagesController < ApplicationController
     def set_team
       team_id = params[:team_id] || params[:message][:team_id] rescue nil
       @team = Team.find(team_id) rescue  @team = Team.first
-      @team
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -2,13 +2,10 @@
 
 <h1><%= @team.name %> の管理</h1>
 
-
-<td><%= link_to 'Destroy', @team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
 <br>
 <div class="panel panel-success">
   <div class="panel-heading"　>備考
-    <%if TeamUser.where("user_id = ?", current_user.id).first.admin==1%>
+    <%if @admin%>
     <%= link_to '-編集', edit_team_path(@team) %>
     <% end %>
   </div>
@@ -25,24 +22,24 @@
       <tr>
         <th>アカウントの種類</th>
         <th>メールアドレス</th>
-        <%if TeamUser.where("user_id = ?", current_user.id).first.admin==1%>
+        <%if @admin%>
         <th></th>
         <th></th>
         <% end %>
       </tr>
     </thead>
-    <tbody>
+    <tbody>  
       <% @team_users.each do |team_user| %>
       <% if @team.id==team_user.team_id %>
       <tr>
         <%if team_user.admin==1%>
-        <td>管理者ユーザー</td>
+        <td>管理者ユーザー<%=team_user.admin=%></td>
         <%else%>
-        <td>一般ユーザー</td>
+        <td>一般ユーザー<%=team_user.admin=%></td>
         <% end %>
         <td><%= team_user.user.try(:email) %></td>
-        <%if TeamUser.where("user_id = ?", current_user.id).first.admin==1%>
-        <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
+        <%if @admin%>
+          <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
           <td><%= link_to '削除', team_user, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
         <% end %>
         </tr>
@@ -51,6 +48,7 @@
       </tbody>
     </table>
   </div>
-  <%if TeamUser.where("user_id = ?", current_user.id).first.admin==1%>
+  <%if @admin%>
   <%= link_to '新しいメンバーを追加する', new_team_team_user_path(team_id: @team.id) %>
-    <% end %>
+  &nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
