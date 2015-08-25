@@ -25,7 +25,7 @@ class TeamUsersController < ApplicationController
   # POST /team_users.json
   def create
     @team_user = TeamUser.new(team_user_params)
-    @team_user.user_id=User.where("email = ?", params[:team_user][:email]).first.id
+    @team_user.user_id=User.where("email = ?",params[:team_user][:email]).first.id
     @team_user.team_id=team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
 
     respond_to do |format|

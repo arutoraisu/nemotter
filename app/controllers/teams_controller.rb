@@ -24,9 +24,16 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(team_params)
 
-      respond_to do |format|
+    @team_user = TeamUser.new(team_user_params)
+    @team_user.user_id=current_user.id
+    @team_user.team_id=@team.id
+    @team_user.admin=1
+
+    @team = Team.new(team_params)
+    TeamUser.where("user_id = ?", current_user.id).first.id=1
+
+    respond_to do |format|
       if @team.save
         format.html { redirect_to team_messages_url(team_id: @team.id), notice: 'チームを作成しました。' }
         format.json { render :show, status: :created, location: @team }
@@ -62,13 +69,13 @@ class TeamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team
-      @team = Team.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team
+    @team = Team.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def team_params
-      params.require(:team).permit(:name, :remark)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def team_params
+    params.require(:team).permit(:name, :remark)
+  end
 end
