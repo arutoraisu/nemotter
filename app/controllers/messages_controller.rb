@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.user_id = current_user.id
+    @message.team_id=team_id = params[:team_id] || params[:message][:team_id] rescue nil
 
     respond_to do |format|
       team_id = @message.team_id
