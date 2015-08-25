@@ -2,12 +2,13 @@
 
 <p id="notice"><%= notice %></p>
 
-User:<%= @message.user_id %>
-Team:<%= @message.team_id %>
-Tag:<%= @message.tag %>
+
+<%= User.where("id = ?", @message.user_id).first.email %>
+/ <%= Team.where("id = ?", @message.team_id).first.name %><br>
+タグ:<%= @message.tag %>
+
 
 <p>
-  <strong>Body:</strong>
   <%= @message.body %>
 </p>
 
@@ -15,9 +16,7 @@ Tag:<%= @message.tag %>
   <%= @message.created_at.in_time_zone('Tokyo') %>
 </p>
 
-
-
-
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
+<!--
+<%= link_to 'Edit', edit_message_path(@message) %>
 <%= link_to 'Back', team_messages_path(@team) %>
+-->

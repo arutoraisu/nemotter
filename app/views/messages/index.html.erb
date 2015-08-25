@@ -30,6 +30,8 @@
   <% @messages.each do |message| %>
   <div class="article">
     <div class="detail">
+      <%= User.where("id = ?", message.user_id).first.email %>
+      / <%= Team.where("id = ?", message.team_id).first.name %>
       タグ:<%= message.tag %>
     </div>
     <div class="comment"><p>
