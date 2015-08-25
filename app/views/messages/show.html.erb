@@ -2,20 +2,23 @@
 
 <p id="notice"><%= notice %></p>
 
-
-<%= User.where("id = ?", @message.user_id).first.email %>
-/ <%= Team.where("id = ?", @message.team_id).first.name %><br>
-タグ:<%= @message.tag %>
-
-
-<p>
-  <%= @message.body %>
-</p>
-
-<p>
-  <%= @message.created_at.in_time_zone('Tokyo') %>
-</p>
-
+<div class="show_article">
+  <div class="show_detail">
+    <%= User.where("id = ?", @message.user_id).first.email %>
+    / <%= Team.where("id = ?", @message.team_id).first.name %>
+    <div class="show_tag">
+    タグ:<%= @message.tag %>
+  </div>
+  </div>
+  <div class="show_comment">
+    <p>
+      <%= @message.body %>
+    </p>
+  </div>
+  <div class="show_date">
+    <%= @message.created_at.in_time_zone('Tokyo') %>
+</div>
+</div>
 <!--
 <%= link_to 'Edit', edit_message_path(@message) %>
 <%= link_to 'Back', team_messages_path(@team) %>
