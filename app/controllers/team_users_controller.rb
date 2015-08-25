@@ -25,11 +25,12 @@ class TeamUsersController < ApplicationController
   # POST /team_users.json
   def create
     @team_user = TeamUser.new(team_user_params)
-    @team_user.user_id = current_user.id
+    @team_user.user_id=User.where("email = ?", params[:team_user][:email]).first.id
+    @team_user.team_id=team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
 
     respond_to do |format|
       if @team_user.save
-        format.html { redirect_to @team_user, notice: 'Team user was successfully created.' }
+        format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'ユーザーを追加しました。' }
         format.json { render :show, status: :created, location: @team_user }
       else
         format.html { render :new }
@@ -41,9 +42,11 @@ class TeamUsersController < ApplicationController
   # PATCH/PUT /team_users/1
   # PATCH/PUT /team_users/1.json
   def update
+    team_id = @team_user.team_id
+
     respond_to do |format|
       if @team_user.update(team_user_params)
-        format.html { redirect_to @team_user, notice: 'Team user was successfully updated.' }
+        format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'ユーザー情報を更新しました' }
         format.json { render :show, status: :ok, location: @team_user }
       else
         format.html { render :edit }
@@ -58,7 +61,7 @@ class TeamUsersController < ApplicationController
     team_id = @team_user.team_id
     @team_user.destroy
     respond_to do |format|
-      format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'Team user was successfully destroyed.' }
+      format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'ユーザーを削除しました。' }
       format.json { head :no_content }
     end
   end

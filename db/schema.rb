@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20150824045742) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
+    t.text     "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "remark"
   end
 
   create_table "users", force: :cascade do |t|
