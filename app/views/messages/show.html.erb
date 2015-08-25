@@ -1,4 +1,10 @@
+
+
 <p id="notice"><%= notice %></p>
+
+User:<%= @message.user_id %>
+Team:<%= @message.team_id %>
+Tag:<%= @message.tag %>
 
 <p>
   <strong>Body:</strong>
@@ -6,19 +12,12 @@
 </p>
 
 <p>
-  <strong>Tag:</strong>
-  <%= @message.tag %>
+  <%= @message.created_at.in_time_zone('Tokyo') %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @message.user_id %>
-</p>
 
-<p>
-  <strong>Team:</strong>
-  <%= @message.team_id %>
-</p>
+
+
 
 <%= link_to 'Edit', edit_message_path(@message) %> |
 <%= link_to 'Back', team_messages_path(@team) %>
