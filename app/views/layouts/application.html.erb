@@ -17,8 +17,9 @@
 
     <div class="page-header">
       <% if user_signed_in? %>
-
-      <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/teams/<%=TeamUser.where("user_id = ?", current_user.id).first.team.id%>/messages';" />
+        <% team_id = current_user.teams.first.try(:id) %>
+        <% path = team_id ? "/teams/#{team_id}/messages" : "#" %>
+        <img alt="nemotter" style="cursor: pointer" height="100" width="350" src="/assets/logo.png" onclick="location.href = '<%= path %>';" />
       <% else %>
       <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/';" />
       <% end %>
