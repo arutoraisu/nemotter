@@ -6,13 +6,13 @@
   <div class="tag_form"><!--タグ検索フォーム-->
     <div class="col-lg-6">
       <div class="input-group">
-        <%= form_tag team_messages_path, :method => 'get' do %> <!-- タグ検索の本質部分 -->
-        <span class="input-group-btn">
-        <input type="text" name="search" id="search" placeholder="タグ検索" class="form-control" >
-        <input type="submit" name="submit" value="検索" class="btn btn-default" class="form-control">
-        </span>
-        <% end %>
 
+        <%= form_tag team_messages_path(@team), :method => 'get' do %> <!-- タグ検索の本質部分 -->
+              <span class="input-group-btn">
+              <input type="text" name="search" id="search" placeholder="タグ検索" class="form-control" >
+              <input type="submit" name="submit" value="検索" class="btn btn-default" class="form-control">
+              </span>
+        <% end %>
       </div>
     </div>
   </div>
@@ -37,11 +37,11 @@
   <div class="article">
     <div class="detail">
       <%= User.where("id = ?", message.user_id).first.email %>
-      / <%= Team.where("id = ?", message.team_id).first.name %>
-      タグ:<%= message.tag %>
+      | <%= Team.where("id = ?", message.team_id).first.name %>
+      | タグ:<%= message.tag %>
     </div>
     <div class="comment"><p>
-      <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
+      <%= truncate(message.body, length:160) do %><%= link_to '全文表示', team_messages_path %><% end %>
     </p></div>
     <div class="posted_date">
       <%= message.created_at.in_time_zone('Tokyo') %>
