@@ -16,44 +16,48 @@
   <div class="container">
 
     <div class="page-header">
-      <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/teams/1/messages';" />
+
+      <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/teams/<%=TeamUser.where("user_id = ?", current_user.id).first.team.id%>/messages';" />
 
       <p class="navbar-text pull-right  topdown">
         <% if user_signed_in? %>
         こんにちは <strong><u>
-        <%= link_to current_user.email,edit_user_registration_path,:class =>'navbar-link'%></u></strong> さん.　|　
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
-        <%= link_to "アカウント登録", new_user_registration_path, :class => 'navbar-link'  %> |
-        <%= link_to "ログイン", new_user_session_path, :class => 'navbar-link'  %>
-        <% end %>
-      </div>
+          <%= link_to current_user.email,edit_user_registration_path,:class =>'navbar-link'%></u></strong> さん.　|　
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+          <%= link_to "アカウント登録", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "ログイン", new_user_session_path, :class => 'navbar-link'  %>
+          <% end %>
+        </div>
 
-      <div class="row">
-        <div class="col-md-3">
-          <ul class="nav nav-pills nav-stacked">
-             <% if user_signed_in? %>
-                <% Team.all.each do |team| %>
-                  <% class_name = @team.id==team.id ? 'active' : '' %>
-                  <li role="presentation" class="<%= class_name %>">
-                      <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
-                  </li>
-                 <% end %>
-                 <br>
-                 <!-- Indicates caution should be taken with this action -->
-                 <div class="team_button_center">
+        <div class="row">
+          <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+              <% if user_signed_in? %>
+
+
+              <% User.where("id = ?",current_user.id).first.teams.each do |team| %>
+
+              <% class_name = @team.id==team.id ? 'active' : '' %>
+              <li role="presentation" class="<%= class_name %>">
+                <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
+              </li>
+              <% end %>
+              <br>
+              <!-- Indicates caution should be taken with this action -->
+              <div class="team_button_center">
                 <button type="button" class="btn btn-warning team_button" onclick="location.href = '/teams/new';">新規作成</button>
               </div>
-             <% end %>
-        　</ul>
+              <% end %>
+            </ul>
 
-        </div>
-        <div class="col-md-9 timeline">
-          <%= yield %>
+          </div>
+          <div class="col-md-9 timeline">
+            <%= yield %>
+          </div>
         </div>
       </div>
-</div>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  </body>
-  </html>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
+    </html>

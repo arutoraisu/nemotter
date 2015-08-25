@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @team.name %> の管理</h1>
+
+
+<td><%= link_to 'Destroy', @team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
 <br>
 <div class="panel panel-success">
   <div class="panel-heading"　>備考
