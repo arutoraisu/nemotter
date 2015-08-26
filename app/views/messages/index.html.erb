@@ -39,21 +39,21 @@
 <% @messages.each do |message| %>
 <!--
 <div class="article">
-  <div class="detail">
-    <%= User.where("id = ?", message.user_id).first.email %>
-    | <%= Team.where("id = ?", message.team_id).first.name %>
-    | タグ:<%= message.tag %>
-  </div>
-  <div class="comment"><p>
-    <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
-  </p></div>
-  <div class="posted_date">
-    <%= message.created_at.in_time_zone('Tokyo') %>
-  </div>
+<div class="detail">
+<%= User.where("id = ?", message.user_id).first.email %>
+| <%= Team.where("id = ?", message.team_id).first.name %>
+| タグ:<%= message.tag %>
+</div>
+<div class="comment"><p>
+<%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
+</p></div>
+<div class="posted_date">
+<%= message.created_at.in_time_zone('Tokyo') %>
+</div>
 </div>
 -->
 
-<div class="panel panel panel-warning">
+<div class="panel panel-warning">
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= User.where("id = ?", message.user_id).first.email %>
@@ -61,11 +61,15 @@
     </h3>
   </div>
   <div class="panel-body">
-    <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
-  </div>
-  <div class="panel-footer">
-    <div class="posted_date">
-      <%= message.created_at.in_time_zone('Tokyo') %>
+    <div class="comment">
+      <p>
+        <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
+      </p>
+    </div>
+    <div class="panel-footer">
+      <div class="posted_date">
+        <%= message.created_at.in_time_zone('Tokyo') %>
+      </div>
     </div>
   </div>
 </div>
