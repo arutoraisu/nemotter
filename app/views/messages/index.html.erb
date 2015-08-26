@@ -18,12 +18,14 @@
   </div>
 
   <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
+    <%if current_user.teams.first != nil %>
     <div class="actions"><a href="messages/new" class="btn btn-primary btn-lg active" role="button">
       <label> メッセージ作成 </label>
     </a></div>
     <div class="actions"><a href="team_users" class="btn btn-success btn-lg active" role="button">
       <label> メンバー管理 </label>
     </a></div>
+    <% end %>
   </div>
 
   <div class="date_form"><!--日時入力フォーム-->
