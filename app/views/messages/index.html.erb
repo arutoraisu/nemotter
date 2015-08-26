@@ -80,9 +80,11 @@
 <!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
 
 <div class="top_button">
+  <%if @messages.length>4 %>
   <div class="actions"><a href=""class="btn btn-primary btn-lg active" role="button">
     <label> 上へ </label>
   </a></div>
+  <% end %>
 </div>
 
 <% if false %>
