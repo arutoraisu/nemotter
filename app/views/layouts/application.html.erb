@@ -41,8 +41,8 @@
 
 
               <% User.where("id = ?",current_user.id).first.teams.each do |team| %>
-        
-              <% class_name = @team.id==team.id ? 'active' : '' %>
+
+              <% class_name = (@team && @team.id==team.id) ? 'active' : '' %>
               <li role="presentation" class="<%= class_name %>">
                 <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
               </li>
