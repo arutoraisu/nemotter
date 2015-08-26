@@ -79,7 +79,8 @@ class TeamUsersController < ApplicationController
     end
 
     def set_team
-      team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
+      #team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
+      team_id =current_user.teams.first.try(:id)
       @team = Team.find(team_id)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
