@@ -2,13 +2,14 @@
 
 <p id="notice"><%= notice %></p>
 
+<!--
 <div class="show_article">
   <div class="show_detail">
     <%= User.where("id = ?", @message.user_id).first.email %>
     / <%= Team.where("id = ?", @message.team_id).first.name %>
     <div class="show_tag">
-    タグ:<%= @message.tag %>
-  </div>
+      タグ:<%= @message.tag %>
+    </div>
   </div>
   <div class="show_comment">
     <p>
@@ -17,8 +18,34 @@
   </div>
   <div class="show_date">
     <%= @message.created_at.in_time_zone('Tokyo') %>
+  </div>
 </div>
+-->
+
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      チーム<%= Team.where("id = ?", @message.team_id).first.name%>
+      /<%= User.where("id = ?", @message.user_id).first.email %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="show_comment">
+      <p>
+        <%= @message.body %>
+      </p>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <div class="posted_date">
+        タグ:<%= @message.tag %>&nbsp;&nbsp;&nbsp;
+      <%= @message.created_at.in_time_zone('Tokyo') %>
+    </div>
+  </div>
 </div>
+
+
 <!--
 <%= link_to 'Edit', edit_message_path(@message) %>
 <%= link_to 'Back', team_messages_path(@team) %>
