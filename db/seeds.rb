@@ -7,4 +7,3 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Team.create(name: 'カントリーマーム', remark: 'カントリーマームの備考')
-Message.create()
