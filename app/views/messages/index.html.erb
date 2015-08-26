@@ -19,7 +19,7 @@
   </div>
 
   <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
-    <%if current_user.teams.first != nil %>
+    <%if ((current_user.teams.first != nil)  || current_page != "http://192.168.56.101:3000/") %>
     <div class="actions"><a href="messages/new" class="btn btn-primary btn-lg active" role="button">
       <label> メッセージ作成 </label>
     </a></div>
