@@ -24,7 +24,7 @@
       <label> メッセージ作成 </label>
     </a></div>
     <div class="actions"><a href="team_users" class="btn btn-success btn-lg active" role="button">
-      <label> メンバー管理 </label>
+      <label> 管理 </label>
     </a></div>
     <% end %>
   </div>
@@ -37,6 +37,7 @@
 
 <%= paginate(@messages) %>
 <% @messages.each do |message| %>
+<!--
 <div class="article">
   <div class="detail">
     <%= User.where("id = ?", message.user_id).first.email %>
@@ -48,6 +49,24 @@
   </p></div>
   <div class="posted_date">
     <%= message.created_at.in_time_zone('Tokyo') %>
+  </div>
+</div>
+-->
+
+<div class="panel panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%= User.where("id = ?", message.user_id).first.email %>
+      | タグ:<%= message.tag %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
+  </div>
+  <div class="panel-footer">
+    <div class="posted_date">
+      <%= message.created_at.in_time_zone('Tokyo') %>
+    </div>
   </div>
 </div>
 <!--<%= link_to 'Edit', edit_message_path(message) %> -->

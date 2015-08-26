@@ -28,19 +28,19 @@
         <% end %>
       </tr>
     </thead>
-    <tbody>  
+    <tbody>
       <% @team_users.each do |team_user| %>
       <% if @team.id==team_user.team_id %>
       <tr>
         <%if team_user.admin==1%>
-        <td>管理者ユーザー<%=team_user.admin=%></td>
+        <td>管理者ユーザー</td>
         <%else%>
-        <td>一般ユーザー<%=team_user.admin=%></td>
+        <td>一般ユーザー</td>
         <% end %>
         <td><%= team_user.user.try(:email) %></td>
         <%if @admin%>
           <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
-          <td><%= link_to '削除', team_user, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+          <td><%= link_to '削除', team_user, method: :delete, data: { confirm: "#{team_user.user.try(:email)}をこのチームから削除してよろしいですか？" } %></td>
         <% end %>
         </tr>
         <% end %>
@@ -50,5 +50,5 @@
   </div>
   <%if @admin%>
   <%= link_to '新しいメンバーを追加する', new_team_team_user_path(team_id: @team.id) %>
-  &nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'Are you sure?' } %>
+  &nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'チームを削除してもよろしいです？' } %>
   <% end %>
