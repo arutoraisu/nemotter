@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+
+    <p id="notice"><%= notice %></p>
   <%= f.hidden_field :team_id %>
   <div class="field">
     メールアドレス
@@ -18,7 +20,7 @@
     <%= f.hidden_field :user_id %>
   </div>
   <div class="field">
-    権限
+    アカウントの種類
     <%=f.select :admin, options_for_select([["管理者","1"], ["一般","0"]])%>
   </div>
   <div class="actions">
