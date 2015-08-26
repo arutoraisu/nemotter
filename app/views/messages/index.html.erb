@@ -3,7 +3,7 @@
 
 <div class="pagetop_form">
   <div class="tag_form"><!--タグ検索フォーム-->
-    <%if current_user.teams.first != nil %>
+    <%if current_user.teams.first != nil && !current_page?(root_path)%>
     <div class="col-lg-6">
       <div class="input-group">
 
@@ -19,7 +19,7 @@
   </div>
 
   <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
-    <%if current_user.teams.first != nil %>
+    <%if ((current_user.teams.first != nil)  && !current_page?(root_path) ) %>
     <div class="actions"><a href="messages/new" class="btn btn-primary btn-lg active" role="button">
       <label> メッセージ作成 </label>
     </a></div>
