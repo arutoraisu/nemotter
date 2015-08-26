@@ -10,8 +10,6 @@
 }
 
 .detail{ /*投稿者など */
-  background-color: #ffff99;
-  color: #000;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -26,7 +24,6 @@
 }
 
 .comment p{
-  margin: 0;
   word-wrap: break-word;
 }
 
@@ -69,22 +66,17 @@
   //border: 1px solid #333;
 }
 .show_detail{
-  background-color: #ffff99;
-  color: #000;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 20px;
   //line-height: 18px;
   padding: 0.5em;
 }
 .show_tag{
-  background-color: #ffff99;
-  color: #000;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 20px;
   padding: 0.3em;
 }
 .show_comment{
-  color: #000;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 15px;
   line-height: 18px;
@@ -92,7 +84,6 @@
   word-wrap: break-word;
 }
 .show_date{
-  background-color: #ffffcc;
   padding-left: 60%;
   padding-top: 1%;
 }
