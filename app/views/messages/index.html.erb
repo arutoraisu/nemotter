@@ -2,19 +2,20 @@
 <p id="notice"><%= notice %></p>
 
 <div class="pagetop_form">
-
   <div class="tag_form"><!--タグ検索フォーム-->
+    <%if current_user.teams.first != nil %>
     <div class="col-lg-6">
       <div class="input-group">
 
         <%= form_tag team_messages_path(@team), :method => 'get' do %> <!-- タグ検索の本質部分 -->
-              <span class="input-group-btn">
-              <input type="text" name="search" id="search" placeholder="タグ検索" class="form-control" >
-              <input type="submit" name="submit" value="検索" class="btn btn-default" class="form-control">
-              </span>
+        <span class="input-group-btn">
+          <input type="text" name="search" id="search" placeholder="タグ検索" class="form-control" >
+          <input type="submit" name="submit" value="検索" class="btn btn-default" class="form-control">
+        </span>
         <% end %>
       </div>
     </div>
+    <% end %>
   </div>
 
   <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
@@ -31,26 +32,26 @@
   <div class="date_form"><!--日時入力フォーム-->
     <!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
   </div>-->
-  </div>
+</div>
 </div>
 
 <%= paginate(@messages) %>
-  <% @messages.each do |message| %>
-  <div class="article">
-    <div class="detail">
-      <%= User.where("id = ?", message.user_id).first.email %>
-      | <%= Team.where("id = ?", message.team_id).first.name %>
-      | タグ:<%= message.tag %>
-    </div>
-    <div class="comment"><p>
-      <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
-    </p></div>
-    <div class="posted_date">
-      <%= message.created_at.in_time_zone('Tokyo') %>
-    </div>
+<% @messages.each do |message| %>
+<div class="article">
+  <div class="detail">
+    <%= User.where("id = ?", message.user_id).first.email %>
+    | <%= Team.where("id = ?", message.team_id).first.name %>
+    | タグ:<%= message.tag %>
   </div>
-  <!--<%= link_to 'Edit', edit_message_path(message) %> -->
-  <% end %>
+  <div class="comment"><p>
+    <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
+  </p></div>
+  <div class="posted_date">
+    <%= message.created_at.in_time_zone('Tokyo') %>
+  </div>
+</div>
+<!--<%= link_to 'Edit', edit_message_path(message) %> -->
+<% end %>
 
 <!-- <%= link_to 'New Message', new_team_message_path(team_id: @team.id) %> -->
 
@@ -73,15 +74,15 @@
   </thead>
   <tbody>
     <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.body %></td>
-        <td><%= message.tag %></td>
-        <td><%= message.user_id %></td>
-        <td><%= message.team_id %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= message.body %></td>
+      <td><%= message.tag %></td>
+      <td><%= message.user_id %></td>
+      <td><%= message.team_id %></td>
+      <td><%= link_to 'Show', message %></td>
+      <td><%= link_to 'Edit', edit_message_path(message) %></td>
+      <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
