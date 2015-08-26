@@ -37,7 +37,7 @@
 
 <%= paginate(@messages) %>
 <% @messages.each do |message| %>
-<!--
+<% if false %>
 <div class="article">
 <div class="detail">
 <%= User.where("id = ?", message.user_id).first.email %>
@@ -51,7 +51,7 @@
 <%= message.created_at.in_time_zone('Tokyo') %>
 </div>
 </div>
--->
+<% end %>
 
 <div class="panel panel-danger">
   <div class="panel-heading">
