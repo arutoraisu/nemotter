@@ -42,14 +42,13 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       <%= Team.where("id = ?", message.team_id).first.name%>
-      /<%= User.where("id = ?", message.user_id).first.email%>
+      / <%= User.where("id = ?", message.user_id).first.email%>
     </h3>
   </div>
   <div class="panel-body">
     <div class="comment">
-      <p>
         <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
-      </p>
+    
     </div>
   </div>
   <div class="panel-footer">
