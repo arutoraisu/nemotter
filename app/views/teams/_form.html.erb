@@ -20,6 +20,10 @@
     <%= f.text_area :remark, :size=>"60x15" %>
   </div>
   <div class="actions">
-    <input type="submit" name="commit" value="作成する">
+    <% if @team.id==nil %>
+    <input type="submit" name="new" value="新設する">
+    <% else %>
+    <input type="submit" name="update" value="更新する">
+    <% end %>
   </div>
 <% end %>
