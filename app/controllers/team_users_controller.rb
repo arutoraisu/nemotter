@@ -33,6 +33,10 @@ class TeamUsersController < ApplicationController
     team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
     @team_user.team_id=team_id
 
+    alreadyExisting = TeamUser.where("user_id = ?", @team_user.user_id).where("team_id = ?", @team_user.team_id).first rescue @team_user = nil
+    return redirect_to "/teams/#{params[:team_id]}/team_users/new", notice: 'そのユーザーは既にチームに所属しています。' if !alreadyExisting.blank?
+
+
     respond_to do |format|
       if @team_user.save
         format.html { redirect_to team_team_users_url(team_id: team_id), notice: 'ユーザーを追加しました。' }
