@@ -10,7 +10,11 @@
     <% end %>
   </div>
   <div class="panel-body">
-    <%= @team.remark %>
+    <div class="comment">
+      <p>
+        <%= @team.remark %>
+      </p>
+    </div>
   </div>
 </div>
 
@@ -39,16 +43,16 @@
         <% end %>
         <td><%= team_user.user.try(:email) %></td>
         <%if @admin%>
-          <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
-          <td><%= link_to '削除', team_user, method: :delete, data: { confirm: "#{team_user.user.try(:email)}をこのチームから削除してよろしいですか？" } %></td>
+        <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
+        <td><%= link_to '削除', team_user, method: :delete, data: { confirm: "#{team_user.user.try(:email)}をこのチームから削除してよろしいですか？" } %></td>
         <% end %>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <%if @admin%>
-  <%= link_to '新しいメンバーを追加する', new_team_team_user_path(team_id: @team.id) %>
-  &nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'チームを削除してもよろしいです？' } %>
-  <% end %>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%if @admin%>
+<%= link_to '新しいメンバーを追加する', new_team_team_user_path(team_id: @team.id) %>
+&nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'チームを削除してもよろしいですか？' } %>
+<% end %>

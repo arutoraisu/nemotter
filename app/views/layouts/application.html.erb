@@ -18,7 +18,7 @@
     <div class="page-header">
       <% if user_signed_in? %>
         <% team_id = current_user.teams.first.try(:id) %>
-        <% path = team_id ? "/teams/#{team_id}/messages" : "#" %>
+        <% path = team_id ? "/teams/#{team_id}/messages" : "/" %>
         <img alt="nemotter" style="cursor: pointer" height="100" width="350" src="/assets/logo.png" onclick="location.href = '<%= path %>';" />
       <% else %>
       <img alt="nemotter" height="100" width="350" src="/assets/logo.png" onclick="location.href = '/';" />
@@ -42,7 +42,7 @@
 
               <% User.where("id = ?",current_user.id).first.teams.each do |team| %>
 
-              <% class_name = (@team && @team.id==team.id) ? 'active' : '' %>
+              <% class_name = ((@team && (@team.id==team.id))||(@message&& @message.team_id==team.id)||(@team_user&& @team_user.team_id==team.id)) ? 'active' : '' %>
               <li role="presentation" class="<%= class_name %>">
                 <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
               </li>

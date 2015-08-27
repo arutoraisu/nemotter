@@ -1,9 +1,10 @@
 
 <p id="notice"><%= notice %></p>
 
+<%if ((current_user.teams.first != nil)  && !current_page?(root_path) ) %>
 <div class="pagetop_form">
   <div class="tag_form"><!--タグ検索フォーム-->
-    <%if current_user.teams.first != nil && !current_page?(root_path)%>
+
     <div class="col-lg-6">
       <div class="input-group">
 
@@ -15,18 +16,17 @@
         <% end %>
       </div>
     </div>
-    <% end %>
+
   </div>
 
   <div class="create_form"> <!--メッセージ作成,管理ボタンフォーム-->
-    <%if ((current_user.teams.first != nil)  && !current_page?(root_path) ) %>
     <div class="actions"><a href="messages/new" class="btn btn-primary btn-lg active" role="button">
       <label> メッセージ作成 </label>
     </a></div>
     <div class="actions"><a href="team_users" class="btn btn-success btn-lg active" role="button">
       <label> 管理 </label>
     </a></div>
-    <% end %>
+
   </div>
 
   <div class="date_form"><!--日時入力フォーム-->
@@ -47,13 +47,12 @@
   </div>
   <div class="panel-body">
     <div class="comment">
-        <%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %>
-    
+      <p><%= truncate(message.body, length:160) do %><%= link_to '全文表示', message %><% end %></p>
     </div>
   </div>
   <div class="panel-footer">
-      タグ:<%= message.tag %>&nbsp;&nbsp;&nbsp;
-      <%= message.created_at.in_time_zone('Tokyo') %>
+    タグ:<%= message.tag %>&nbsp;&nbsp;&nbsp;
+    <%= message.created_at.in_time_zone('Tokyo') %>
   </div>
 </div>
 <!--<%= link_to 'Edit', edit_message_path(message) %> -->
@@ -68,6 +67,9 @@
   </a></div>
   <% end %>
 </div>
+
+
+<% end %>
 
 <% if false %>
 <table>
