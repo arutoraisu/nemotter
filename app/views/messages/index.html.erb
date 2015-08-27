@@ -2,7 +2,6 @@
 <p id="notice"><%= notice %></p>
 
 <%if ((current_user.teams.first != nil)  && !current_page?(root_path) ) %>
-<div class="pagetop_form">
   <div class="tag_form"><!--タグ検索フォーム-->
 
     <div class="col-lg-6">
@@ -29,8 +28,7 @@
   <div class="date_form"><!--日時入力フォーム-->
     <!--<%= datetime_select :page, :updated_at , :discard_minute=>true, :discard_hour=>true%>
   </div>-->
-</div>
-</div>
+  </div>
 
 <%= paginate(@messages) %>
 <% @messages.each do |message| %>
