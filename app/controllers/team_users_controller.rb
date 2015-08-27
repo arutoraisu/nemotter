@@ -30,6 +30,9 @@ class TeamUsersController < ApplicationController
     #@team_user.user_id=User.where("email = ?",params[:team_user][:email]).first.id rescue @team_user.user_id=-1
     @team_user.user_id = User.where("email = ?", params[:team_user][:email]).first.id rescue @team_user.user_id = nil
     return redirect_to "/teams/#{params[:team_id]}/team_users/new", notice: 'そのユーザーは登録されていません。' if @team_user.user_id.blank?
+    alreadyExisting = TeamUser.where("user_id = ?", @team_user.user_id).first.id rescue @team_user.user_id = nil
+    return redirect_to "/teams/#{params[:team_id]}/team_users/new", notice: 'そのユーザーは既にチームに所属しています。' if !alreadyExisting.blank?
+
     team_id = params[:team_id] || params[:team_users][:team_id] rescue team_id = 1
     @team_user.team_id=team_id
 
