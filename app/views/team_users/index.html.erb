@@ -44,7 +44,7 @@
         <td><%= team_user.user.try(:email) %></td>
         <%if @admin%>
         <td><%= link_to 'ユーザー編集', edit_team_user_path(team_user) %></td>
-        <td><%= link_to '削除', team_user, method: :delete, data: { confirm: "#{team_user.user.try(:email)}をこのチームから削除してよろしいですか？" } %></td>
+        <td><%= link_to '削除', team_user, method: :delete, data: { confirm: "#{team_user.user.try(:email)} をこのチームから削除してよろしいですか？" } %></td>
         <% end %>
       </tr>
       <% end %>
