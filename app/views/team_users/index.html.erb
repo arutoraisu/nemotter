@@ -54,5 +54,5 @@
 </div>
 <%if @admin%>
 <%= link_to '新しいメンバーを追加する', new_team_team_user_path(team_id: @team.id) %>
-&nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'チームを削除してもよろしいですか？' } %>
+&nbsp;&nbsp;&nbsp;<%= link_to 'チームの削除', @team, method: :delete, data: { confirm: 'このチームを削除してもよろしいですか？' } %>
 <% end %>
