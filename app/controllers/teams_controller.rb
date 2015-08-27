@@ -45,8 +45,9 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
-    name=@team.name
-    return redirect_to "/teams/#{params[:team_id]}/edit", notice: 'チーム名を入力してください。' if name.blank?
+    
+    return redirect_to "/teams/#{params[:id]}/edit", notice: 'チーム名を入力してください。' if name=blank?
+
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to team_team_users_url(team_id: @team.id), notice: 'チームを更新しました。' }
