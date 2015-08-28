@@ -45,8 +45,8 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
-    
-    return redirect_to "/teams/#{params[:id]}/edit", notice: 'チーム名を入力してください。' if name=blank?
+    name=params[:name]
+    return redirect_to "/teams/#{params[:id]}/edit", notice: 'チーム名を入力してください。' if name.blank?
 
     respond_to do |format|
       if @team.update(team_params)
@@ -65,8 +65,6 @@ class TeamsController < ApplicationController
     @team.destroy
     team_id = current_user.teams.first.try(:id) rescue team_id=nil
     return redirect_to "/", notice: 'チームを削除しました。' if team_id.blank?
-
-
 
     respond_to do |format|
       format.html { redirect_to team_messages_url(team_id: team_id), notice: 'チームを削除しました。' }
