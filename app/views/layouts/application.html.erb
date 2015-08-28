@@ -39,8 +39,6 @@
         <div class="col-md-3">
           <ul class="nav nav-pills nav-stacked">
             <% if user_signed_in? %>
-
-
             <% User.where("id = ?",current_user.id).first.teams.each do |team| %>
 
             <% class_name = ((@team && (@team.id==team.id))||(@message&& @message.team_id==team.id)||(@team_user&& @team_user.team_id==team.id)) ? 'active' : '' %>
