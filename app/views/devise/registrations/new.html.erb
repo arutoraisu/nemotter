@@ -3,6 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+
   <div class="field">
     <label>Eメールを入力してください</label><br />
     <%= f.email_field :email, autofocus: true %>
@@ -25,5 +26,8 @@
     <%= f.submit "アカウント登録" %>
   </div>
 <% end %>
+
+
+
 <br/>
 <%= render "devise/shared/links" %>
