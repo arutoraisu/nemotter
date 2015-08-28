@@ -28,9 +28,6 @@
         こんにちは <strong><u>
           <%= link_to current_user.email,edit_user_registration_path,:class =>'navbar-link'%></u></strong> さん.　|　
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-          <% else %>
-          <%= link_to "アカウント登録", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "ログイン", new_user_session_path, :class => 'navbar-link'  %>
           <% end %>
         </p>
       </div>
@@ -41,7 +38,7 @@
             <% if user_signed_in? %>
             <% User.where("id = ?",current_user.id).first.teams.each do |team| %>
 
-            <% class_name = ((@team && (@team.id==team.id))||(@message&& @message.team_id==team.id)||(@team_user&& @team_user.team_id==team.id)) ? 'active' : '' %>
+            <% class_name = !current_page?(root_path)&&((@team && (@team.id==team.id))||(@message&& (@message.team_id==team.id))||(@team_user&& (@team_user.team_id==team.id))) ? 'active' : '' %>
             <li role="presentation" class="<%= class_name %>">
               <a href="/teams/<%=team.id%>/messages"><%= team.name %> </a>
             </li>
