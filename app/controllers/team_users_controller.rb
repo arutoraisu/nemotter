@@ -79,7 +79,8 @@ class TeamUsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team_user
-      @team_user = TeamUser.find(params[:id])
+      @team_user = TeamUser.find(params[:id]) rescue @team_user = nil
+      return redirect_to "/", notice: 'そのユーザーは既に存在しません。' if @team_user.blank?
     end
 
     def set_team

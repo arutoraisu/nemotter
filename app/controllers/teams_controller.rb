@@ -66,8 +66,6 @@ class TeamsController < ApplicationController
     team_id = current_user.teams.first.try(:id) rescue team_id=nil
     return redirect_to "/", notice: 'チームを削除しました。' if team_id.blank?
 
-
-
     respond_to do |format|
       format.html { redirect_to team_messages_url(team_id: team_id), notice: 'チームを削除しました。' }
       format.json { head :no_content }
